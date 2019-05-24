@@ -1,0 +1,2 @@
+# myFirstSite
+Django learning project
