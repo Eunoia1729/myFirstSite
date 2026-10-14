@@ -19,11 +19,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '***REMOVED***'
+# SECURITY WARNING: set DJANGO_SECRET_KEY in the environment for anything beyond local development.
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'insecure-dev-only-key')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Debug is off unless DJANGO_DEBUG=1 is set.
+DEBUG = os.environ.get('DJANGO_DEBUG', '') == '1'
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
@@ -69,6 +69,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'firstSite.wsgi.application'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -108,8 +110,6 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
-
-USE_L10N = True
 
 USE_TZ = True
 
